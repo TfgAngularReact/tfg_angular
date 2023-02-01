@@ -1,11 +1,12 @@
 li {
     display: inline;
+    padding: 8px;
+    color: white;
 
   }
   
   a {
-    padding: 8px;
-    color: white;
+    
   }
   header{height: 100vh;
         width: 100vw;}
@@ -66,7 +67,7 @@ li {
 
 
   }
-  .nav-links.pene{margin-left: 0  !important;}
+  .nav-links.ocultar{margin-left: 0  !important;}
 
 
   

@@ -1,20 +1,15 @@
 <body>
   <nav class="navbar">
-    <a class="logo" href="/">LOGO</a>
+<p [routerLink]="['/']">LOGO</p>
     <!-- Links -->
-    <div class="nav-links" [ngClass]="{'pene':margen}">
+    <div class="nav-links" [ngClass]="{'ocultar':margen}">
     <ul >
        <!----> 
       
-      <li  class="active" >
-        <a href="/">Inicio</a>
-      </li>
-      <li class="active">
-        <a  href="/misjuegos">Mis juegos</a></li>
-      <li class="active">
-        <a  href="/perfil">Reseñas</a></li>
-        <li class="active">
-          <a  href="/perfil">Mi perfil</a></li>
+      <li class="active" [routerLink]="['/']"></li>
+      <li class="active" [routerLink]="['/misjuegos']">Mis juegos</li>
+      <li class="active" [routerLink]="['/resenas']">Reseñas</li>
+      <li class="active" [routerLink]="['/perfil']">Mi perfil</li>
 
     </ul>
 

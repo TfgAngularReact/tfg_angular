@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'tfg_angular';
 
-  margen: boolean=true;
+  margen: boolean=false;
 
   toggleMenu():void{
     this.margen = !this.margen;
