@@ -15,6 +15,15 @@ import { FirestoreModule, provideFirestore,getFirestore } from '@angular/fire/fi
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
+import { LoginComponent } from './componentes/login/login.component';
+import { RegistroComponent } from './componentes/registro/registro.component';
+import { RecuperarContraComponent } from './componentes/recuperar-contra/recuperar-contra.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastRef, ToastrModule } from 'ngx-toastr';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -27,6 +36,9 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
     PerfilComponent,
     MisjuegosComponent,
     ResenasComponent,
+    LoginComponent,
+    RegistroComponent,
+    RecuperarContraComponent,
   
 
   ],
@@ -37,7 +49,12 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
     FirestoreModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    ReactiveFormsModule, 
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    FormsModule
+    
 
   ],
   providers: [],

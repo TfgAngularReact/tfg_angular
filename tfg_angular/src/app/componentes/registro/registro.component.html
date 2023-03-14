@@ -1,0 +1,31 @@
+<div class="wrapper">
+    <div class="body">
+
+        <form>
+            <div style="color: white; text-align:center; margin-bottom:3%;">
+              <h2>Registrarse</h2>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" name="email" [(ngModel)]="registrarUsuario.email" placeholder="name@example.com" required>
+              <label>Email</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="string" class="form-control" name="usuario" [(ngModel)]="registrarUsuario.nickname" placeholder="Usuario" required>
+              <label>Usuario</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" name="password" [(ngModel)]="password" placeholder="Contraseña" required>
+              <label>Contraseña</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" name="repetirPass" [(ngModel)]="repetirPass" placeholder="Contraseña" required>
+              <label>Repetir Contraseña</label>
+            </div>
+            <div class="d-grid gap-2">
+              <button class="btn btn-primary btn-lg" (click)="submitted=true; registrar()" type="button">Aceptar</button>
+            </div>
+          </form>
+          
+         
+    </div>
+</div>

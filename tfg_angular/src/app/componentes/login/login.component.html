@@ -1,0 +1,25 @@
+<div class="wrapper">
+    <div class="body">
+
+        <form [formGroup]="loginUsuario" (ngSubmit)="login()">
+            <div style="color: white; text-align:center; margin-bottom:3%;"><h2>Bienvenido</h2></div>
+            <div class="form-floating mb-3">
+                <input type="email" formControlName="email" class="form-control" placeholder="name@example.com">
+                <label>Email</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" formControlName="password" placeholder="Contraseña">
+                <label>Contraseña</label>
+            </div>
+            <div class="d-grid gap-2">
+                <button class ="btn btn-primary btn-lg" type="submit">Ingresar</button>
+            </div>
+            <p class="mt-3">
+                ¿No tienes cuenta? <a routerLink="/registro">Registrate</a>
+            </p>
+            <a routerLink="/recuperar-contrasena"class="mt-3" style="margin-left: 13%;">Recuperar contraseña</a>
+
+        </form>
+         
+    </div>
+</div>

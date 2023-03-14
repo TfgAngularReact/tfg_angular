@@ -1,5 +1,5 @@
 <body>
-  <nav class="navbar">
+  <header><nav class="navbar">
 <p [routerLink]="['/']">LOGO</p>
     <!-- Links -->
     <div class="nav-links" [ngClass]="{'ocultar':margen}">
@@ -7,18 +7,22 @@
        <!----> 
       
       <li class="active" [routerLink]="['/']"></li>
-      <li class="active" [routerLink]="['/misjuegos']">Mis juegos</li>
-      <li class="active" [routerLink]="['/resenas']">Reseñas</li>
-      <li class="active" [routerLink]="['/perfil']">Mi perfil</li>
+      <li class="active" [routerLink]="['/misjuegos']" *ngIf="auth">Mis juegos</li>
+      <li class="active" [routerLink]="['/resenas']" *ngIf="auth">Reseñas</li>
+      <li class="active" [routerLink]="['/perfil']" *ngIf="auth">Mi perfil</li>
+      <li class="active" [routerLink]="['/registro']" *ngIf="!auth">Registrate</li>
+      <li class="active" [routerLink]="['/login']" *ngIf="!auth">Iniciar Sesion</li>
+
 
     </ul>
 
   </div>
   <i class="bi bi-list menu"style="color: white;" (click)="toggleMenu()"></i>
   
-  </nav>
-  <header></header>
+  </nav></header>
   
-  <router-outlet></router-outlet>
+  
+  <div ><router-outlet></router-outlet></div>
+  
 </body>
 
