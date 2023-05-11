@@ -1,5 +1,6 @@
 <body>
-  <header><nav class="navbar">
+
+ <header><nav class="navbar">
 <p [routerLink]="['/']">LOGO</p>
     <!-- Links -->
     <div class="nav-links" [ngClass]="{'ocultar':margen}">
@@ -20,9 +21,45 @@
   <i class="bi bi-list menu"style="color: white;" (click)="toggleMenu()"></i>
   
   </nav></header>
+
+  <div >
+    <router-outlet></router-outlet>
+  </div>
+    
   
-  
-  <div ><router-outlet></router-outlet></div>
-  
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h4 class="footer-title">Acerca de Nosotros</h4>
+        <p class="footer-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mattis quam in ligula ultrices, eget dapibus libero rhoncus.</p>
+        <ul class="social-media">
+          <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+          <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+          <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h4 class="footer-title">Enlaces Rápidos</h4>
+        <ul class="footer-links">
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#">Servicios</a></li>
+          <li><a href="#">Productos</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h4 class="footer-title">Contáctanos</h4>
+        <ul class="footer-contact">
+          <li><i class="fas fa-map-marker-alt"></i> 123 Calle Principal, Ciudad, País</li>
+          <li><i class="fas fa-envelope"></i> info@tusitio.com</li>
+          <li><i class="fas fa-phone"></i> +1234567890</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
 </body>
 

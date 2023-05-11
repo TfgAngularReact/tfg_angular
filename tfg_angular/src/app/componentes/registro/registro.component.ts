@@ -9,6 +9,7 @@ import { first } from 'rxjs/operators';
 import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { Usuario } from '../../models';
+import { Timestamp } from 'firebase/firestore';
 
 
 
@@ -21,7 +22,14 @@ export class RegistroComponent {
   registrarUsuario: Usuario = {
     email: "",
     nickname: "",
-    uid: ""
+    uid: "",
+    likes: [],
+    fechaRegistro: Timestamp.now(),
+    listas: [],
+    reseñas: [],
+    jugados: [],
+    seguidos: [],
+    seguidores: []
   };
   password: string;
   repetirPass: string;

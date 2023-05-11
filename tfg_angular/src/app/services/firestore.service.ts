@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
+import { juego } from '../models';
+import { Firestore, collection, addDoc, collectionData, where, query, getDocs, limit } from '@angular/fire/firestore';
+import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
+import * as moment from 'moment';
+
 
 
 
@@ -8,7 +14,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 })
 export class FirestoreService {
 
-  constructor(public database: AngularFirestore) { }
+  constructor(public database: AngularFirestore,
+              private firestore: Firestore) { }
 
   createDoc(data: any, path: string, id: string){
     const collection = this.database.collection(path);
@@ -36,8 +43,8 @@ export class FirestoreService {
     return this.database.createId();
   }
 
-  getCollection<tipo>(path:string){
-    const collection = this.database.collection<tipo>(path);
+  getCollection<juego>(path:string){
+    const collection = this.database.collection<juego>(path);
     return collection;
 
   }
@@ -49,6 +56,7 @@ export class FirestoreService {
   }
 
   getUsuario<tipo>(path:string, uid:string){
+    console.log(path);
     const collection = this.database.collection<tipo>(path);
     return collection.doc(uid).valueChanges();
     }
@@ -58,4 +66,23 @@ export class FirestoreService {
     const collection = this.database.collection<tipo>(path, ref => ref.where('nombre','==',nombre));
     return collection.valueChanges();
   }
+
+
+  getCollectionNew(): Observable<juego[]>{
+    const placeRef = collection(this.firestore, 'Juegos');
+    return collectionData(placeRef, {idField: 'id'}) as Observable<juego[]>;
+  }
+
+  getNovedadesJuegos(): Observable<juego[]>{
+    const collectionRef = collection(this.firestore, 'Juegos');
+    const limitDate = moment().subtract(10, 'days').format("DD-MM-YYYY");
+    console.log(limitDate);
+    const queryRef = query(collectionRef, where('fechaCreacion', '>', moment(limitDate, "DD-MM-YYYY").toDate()), limit(6));
+    console.log(queryRef);
+    return collectionData(queryRef, {idField: 'id'}) as Observable<juego[]>;
+
+  }
+
+
+
 }

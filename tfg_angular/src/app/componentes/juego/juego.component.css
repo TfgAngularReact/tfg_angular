@@ -1,0 +1,8 @@
+.contenedor {
+    position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100wh;
+    height: 400px; /* Ajusta la altura según tus necesidades */
+  }

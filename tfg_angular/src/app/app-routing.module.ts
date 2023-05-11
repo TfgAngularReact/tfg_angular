@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './componentes/home/home.component';
+import { JuegoComponent } from './componentes/juego/juego.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { MisjuegosComponent } from './componentes/misjuegos/misjuegos.component';
 import { PerfilComponent } from './componentes/perfil/perfil.component';
@@ -16,7 +17,8 @@ const routes: Routes = [  {path:'', component:HomeComponent},
 {path:'resenas', component:ResenasComponent, canActivate: [ProfileGuard]},
 {path:'login', component: LoginComponent, canActivate: [AuthGuard]},
 {path:'registro', component:RegistroComponent, canActivate: [AuthGuard]},
-{path:'recuperar-contrasena', component:RecuperarContraComponent, canActivate: [AuthGuard]}];
+{path:'recuperar-contrasena', component:RecuperarContraComponent, canActivate: [AuthGuard]},
+{path:'juego/:id', component:JuegoComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

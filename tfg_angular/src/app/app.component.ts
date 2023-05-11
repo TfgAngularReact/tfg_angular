@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FirebaseauthService } from './services/firebaseauth.service';
+import { FirestoreService } from './services/firestore.service';
 
 
 @Component({
@@ -14,11 +15,31 @@ export class AppComponent {
   margen: boolean=false;
   auth = false;
 
+  nombreUsuario: string;
 
-  constructor(private firebaseauthService: FirebaseauthService){
-    this.getUid();
+
+  constructor(private firebaseauthService: FirebaseauthService,
+              private firestoreService: FirestoreService
+              ){
+    this.nombreUsuario="";
+    this.estadoSesion();
+
   }
+  async ngOnInit() {
+    const id = await this.firebaseauthService.getUid();
 
+    //this.loadUsuario(id);
+
+
+  }
+  
+
+ /* async loadUsuario(id: any){
+
+    this.firestoreService.getUsuario('Usuarios', id ).subscribe((res:any)=>{
+      this.nombreUsuario=res.nickname;
+    });
+  }*/
 
 
   toggleMenu():void{
@@ -26,7 +47,7 @@ export class AppComponent {
     console.log(this.margen);
   }
 
-  getUid(){ 
+  estadoSesion(){ 
     this.firebaseauthService.stateAuth().subscribe(res =>{
       if(res !== null){
         this.auth=true;

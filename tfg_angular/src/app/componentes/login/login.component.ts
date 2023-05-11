@@ -19,7 +19,7 @@ export class LoginComponent {
     private router: Router
   ){
     this.loginUsuario = this.fb.group({
-      email:['', Validators.required],
+      email:['', Validators.required], //Validators.required obliga al usuario a rellenar esos campos
       password:['', Validators.required]});
   }
 

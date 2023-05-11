@@ -83,6 +83,101 @@ li {
 
 }
 
+body { 
+  min-height: 100vh; }
+
+/* Estilos para el footer */
+
+.footer {
+  background-color: #000239;
+  padding: 20px 0;
+  bottom:0px;
+  width: 100%;
+}
+
+
+
+.footer-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.footer-text {
+  font-size: 14px;
+  color: rgb(255, 255, 255);
+  line-height: 1.6;
+}
+
+.social-media {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.social-media li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.social-media li a {
+  color: #666;
+  font-size: 20px;
+  transition: color 0.3s ease-in-out;
+}
+
+.social-media li a:hover {
+  color: #333;
+}
+
+
+
+.footer-links {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links li a {
+  color: #666;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer-links li a:hover {
+  color: #333;
+}
+
+.footer-contact {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-contact li {
+  margin-bottom: 10px;
+}
+
+.footer-contact li i {
+  margin-right: 10px;
+  color: #666;
+}
+
+.footer-contact li a {
+  color: #666;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer-contact li a:hover {
+  color: #333;
+}
+
+
 
 
     

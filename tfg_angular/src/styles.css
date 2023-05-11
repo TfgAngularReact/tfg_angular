@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-body {background-image:linear-gradient(to bottom,  #1b253a, #33466d ) !important;
+body {background-color: #24314d  !important;
         margin: 0;
         height: 100vh;
+        color: #fff;
         }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

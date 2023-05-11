@@ -25,6 +25,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastRef, ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 
+import { HttpClientModule } from '@angular/common/http';
+import {FlexLayoutModule} from "@angular/flex-layout";
+import { JuegoComponent } from './componentes/juego/juego.component';
+import { AddListaDialogComponent } from './componentes/add-lista-dialog/add-lista-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+
+
 
 
 
@@ -39,13 +46,15 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     RegistroComponent,
     RecuperarContraComponent,
+    JuegoComponent,
+    AddListaDialogComponent,
   
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebase),
     FirestoreModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
@@ -53,7 +62,10 @@ import { FormsModule } from '@angular/forms';
     ReactiveFormsModule, 
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    FlexLayoutModule,
+    MatDialogModule
     
 
   ],

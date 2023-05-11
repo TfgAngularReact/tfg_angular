@@ -1,6 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+
 import { User } from 'firebase/auth';
 import { Observable } from 'rxjs';
 import { Usuario } from '../models';
@@ -44,6 +45,7 @@ export class FirebaseauthService {
 
   async getUid(){
     const user = await this.auth.currentUser;
+    console.log(user?.uid);
     if(user === null){
       return null;
     }

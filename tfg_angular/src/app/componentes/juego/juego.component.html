@@ -1,0 +1,33 @@
+<div class="contenedor" [ngStyle]="getBackgroundImageStyle()">
+    <div fxLayout="row">
+        <div fxLayout="column">
+            <div>
+                {{juego.nombre}}
+            </div>
+            <div>
+                Descripcion
+
+            </div>
+            <div>
+                <p>
+                    {{juego.descripcion}}
+                </p>
+            </div>
+            <div>
+                GALERIA DE IMAGENES TODO
+            </div>
+
+
+        </div>
+        <div fxLayout="column">
+            <div class="card">
+                <div class="card-body">
+                  <button (click)="openDialogAddLista()"> Añadir a lista </button>
+                </div>
+              </div>
+            
+        </div>
+
+    </div>
+
+</div>
