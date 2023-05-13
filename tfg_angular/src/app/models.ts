@@ -1,12 +1,13 @@
 import { Timestamp } from "firebase/firestore";
 
 export interface Usuario{
+
     email: string;
     nickname: string;
     uid: string;
     likes: Array<string>;
     fechaRegistro:Timestamp;
-    listas: Array<Array<string>>;
+    listas: Array<string>; //Array con los id de las listas
     reseñas:Array<string>;
     jugados:Array<string>;
     seguidos: Array<string>;
@@ -24,7 +25,7 @@ export interface lista{
 export interface reseña{
   id: string;
   name: string;
-  juego: string;
+  id_juego: string;
   fechaCreacion: Timestamp;
   num_likes: number;
   texto: string;
@@ -140,6 +141,8 @@ tiendas:Array<string>;
 descripcion: string;
 reseñas: Array<string>;
 num_likes: number;
+num_jugados: number;
 puntuacion: number;
+listas: Array<string>;
 
 }

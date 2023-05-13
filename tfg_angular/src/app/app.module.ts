@@ -30,6 +30,10 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import { JuegoComponent } from './componentes/juego/juego.component';
 import { AddListaDialogComponent } from './componentes/add-lista-dialog/add-lista-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatCardModule} from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
 
 
 
@@ -65,7 +69,10 @@ import {MatDialogModule} from '@angular/material/dialog';
     FormsModule,
     HttpClientModule,
     FlexLayoutModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule
     
 
   ],
