@@ -6,3 +6,7 @@
     width: 100wh;
     height: 400px; /* Ajusta la altura según tus necesidades */
   }
+
+  .mat-icon.outlined-icon {
+    fill: none;
+  }

@@ -1,1 +1,7 @@
-<p>add-lista-dialog works!</p>
+<mat-dialog-content>
+    <div fxLayout="column">
+            <mat-checkbox *ngFor="let item of listas" class="checkbox" [checked]="isChecked(item)" (change)="toggleCheckbox(item, $event)"> {{item.name}}</mat-checkbox>
+    </div>
+</mat-dialog-content>
+
+

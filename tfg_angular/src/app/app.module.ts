@@ -33,6 +33,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -72,8 +73,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatDialogModule,
     MatCardModule,
     MatButtonModule,
-    MatIconModule
-    
+    MatIconModule,
+    MatCheckboxModule
 
   ],
   providers: [],

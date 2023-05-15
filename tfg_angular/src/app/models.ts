@@ -16,6 +16,7 @@ export interface Usuario{
 }
 export interface lista{
   id: string;
+  uid: string;
   name: string;
   juegos: Array<string>;
   fechaCreacion: Timestamp;

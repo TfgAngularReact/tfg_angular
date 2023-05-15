@@ -26,10 +26,15 @@
                       <button (click)="openDialogAddLista()"> Añadir a lista </button>
                       <button (click)="like()">Dar me gusta</button>
                       <button (click)="marcarJugado()">Marcar como jugado</button>
-
-                      <button mat-icon-button (click)="like()">
+                    <div fxLayout="row">
+                        <button mat-icon-button (click)="like()">
                         <mat-icon>{{ isLiked ? 'favorite' : 'favorite_border' }}</mat-icon>
                       </button>
+                      <button mat-icon-button (click)="marcarJugado()">
+                        <mat-icon [ngClass]="{'outlined-icon': !jugado}">sports_esports</mat-icon>
+                      </button>
+                    </div>
+                      
                       
 
                 </mat-card-content>

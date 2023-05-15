@@ -21,6 +21,7 @@ idJuego:string;
 juego: juego;
 uid: any;
 isLiked: boolean;
+jugado: boolean;
 usuario: any;
 constructor(    
   private route: ActivatedRoute,
@@ -47,6 +48,7 @@ constructor(
   };
   this.uid="";
   this.isLiked = false;
+  this.jugado = false;
 
 }
 
@@ -100,6 +102,14 @@ compruebaIsLiked(){
   }
 }
 
+compruebaIsJugado(){
+  if(this.usuario.jugados.includes(this.idJuego)){
+
+    this.jugado = true;
+
+  }
+}
+
 getBackgroundImageStyle() {
   const backgroundImage = this.juego?.portada ? `linear-gradient(0deg, rgb(6, 16, 31) 20%, rgba(6, 16, 31, 0.6)), url(${this.juego.portada})` : '';
   return {
@@ -109,8 +119,10 @@ getBackgroundImageStyle() {
 
 openDialogAddLista(): void {
   const dialogRef = this.dialog.open(AddListaDialogComponent, {
-    width: '250px',
-    data: { juego: this.juego } // Puedes pasar datos al diálogo mediante la opción `data`
+    width: '450px',
+    height: '300px',
+    data: { juego: this.juego,
+            usuario: this.usuario } // Puedes pasar datos al diálogo mediante la opción `data`
   });
 
   dialogRef.afterClosed().subscribe(result => {
@@ -120,6 +132,37 @@ openDialogAddLista(): void {
 }
 
 marcarJugado(){
+
+  this.jugado = !this.jugado;
+
+  if(this.jugado === true){
+    this.juego.num_jugados+=1;
+
+    this.usuario.jugados.push(this.idJuego);
+    try{
+
+      this.firestoreService.updateDoc(this.usuario, 'Usuarios', this.uid);
+    }catch(e){
+      console.log('Error', e);
+    }
+
+  }
+  else{
+    this.juego.num_jugados -= 1;
+
+    const elementoAEliminar = this.idJuego;
+    const indice = this.usuario.jugados.indexOf(elementoAEliminar);
+    if (indice !== -1) {
+      this.usuario.jugados.splice(indice, 1);
+    }
+    try{
+
+      this.firestoreService.updateDoc(this.usuario, 'Usuarios', this.uid);
+    }catch(e){
+      console.log('Error', e);
+    }
+  }
+
 
 }
 
