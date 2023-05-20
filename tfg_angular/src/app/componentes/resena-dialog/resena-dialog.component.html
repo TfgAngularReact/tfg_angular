@@ -1,0 +1,13 @@
+<mat-dialog-content>
+    <div fxLayout="column" fxLayoutAlign="flex-start center" class="form-group-line w-100-p py-4">
+
+        <ngx-stars [readonly]="false" [size]="3" [maxStars]="5" (ratingOutput)="onRatingSet($event)"></ngx-stars>
+        <mat-label>Reseña:</mat-label>
+            <textarea matInput [(ngModel)]="texto" placeholder="Ex. It makes me feel..."></textarea>
+        
+        <button (click)="guardarResena()">
+            Guardar
+        </button>
+    </div>
+      
+</mat-dialog-content>

@@ -34,8 +34,11 @@ import {MatCardModule} from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { ResenaDialogComponent } from './componentes/resena-dialog/resena-dialog.component';
 
 
+import { NgxStarsModule } from 'ngx-stars';
 
 
 
@@ -53,6 +56,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     RecuperarContraComponent,
     JuegoComponent,
     AddListaDialogComponent,
+    ResenaDialogComponent,
   
 
   ],
@@ -74,8 +78,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatCardModule,
     MatButtonModule,
     MatIconModule,
-    MatCheckboxModule
-
+    MatCheckboxModule,
+    MatFormFieldModule,
+    NgxStarsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

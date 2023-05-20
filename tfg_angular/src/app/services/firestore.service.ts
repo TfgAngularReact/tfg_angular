@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
-import { juego, lista } from '../models';
+import { juego, lista, resena } from '../models';
 import { Firestore, collection, addDoc, collectionData, where, query, getDocs, limit } from '@angular/fire/firestore';
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
 import * as moment from 'moment';
@@ -75,7 +75,7 @@ export class FirestoreService {
 
   getNovedadesJuegos(): Observable<juego[]>{
     const collectionRef = collection(this.firestore, 'Juegos');
-    const limitDate = moment().subtract(15, 'days').format("DD-MM-YYYY");
+    const limitDate = moment().subtract(30, 'days').format("DD-MM-YYYY");
     console.log(limitDate);
     const queryRef = query(collectionRef, where('fechaCreacion', '>', moment(limitDate, "DD-MM-YYYY").toDate()), limit(6));
     console.log(queryRef);
@@ -83,6 +83,13 @@ export class FirestoreService {
 
   }
 
+  getResenasByJuego(id_juego: any):Observable<resena[]>{
+    
+    const collectionRef = collection(this.firestore,'Resenas');
+    const queryRef = query(collectionRef, where('id_juego', '==', id_juego));
+    return collectionData(queryRef, {idField: 'id'}) as Observable<resena[]>;
+
+  }
   getListasByUid(uid:string): Observable<lista[]>{
     const collectionRef = collection(this.firestore, 'Listas');
     const queryRef = query(collectionRef, where('uid', '==', uid ));

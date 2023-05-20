@@ -33,15 +33,17 @@
                       <button mat-icon-button (click)="marcarJugado()">
                         <mat-icon [ngClass]="{'outlined-icon': !jugado}">sports_esports</mat-icon>
                       </button>
+                      <button mat-icon-button (click)="openDialogResena()">
+                        <mat-icon >edit_note</mat-icon>
+                      </button>
                     </div>
-                      
-                      
-
                 </mat-card-content>
-     
-                
-                
-            
+            </mat-card>
+            <mat-card>
+                <mat-card-content>
+                    <p>{{puntuacion}}                    </p>
+                    <ngx-stars [readonly]="true" [initialStars]="puntuacion"></ngx-stars>
+                </mat-card-content>
             </mat-card>
             
         </div>   

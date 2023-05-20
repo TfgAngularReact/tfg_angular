@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Timestamp } from 'firebase/firestore';
 import * as moment from 'moment';
@@ -7,6 +7,8 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddListaDialogComponent } from '../add-lista-dialog/add-lista-dialog.component';
 import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
+import { ResenaDialogComponent } from '../resena-dialog/resena-dialog.component';
+import { NgxStarsComponent } from 'ngx-stars';
 
 
 
@@ -17,17 +19,23 @@ import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 })
 export class JuegoComponent {
 
+
 idJuego:string;
 juego: juego;
 uid: any;
 isLiked: boolean;
 jugado: boolean;
 usuario: any;
+puntuacion: number;
+@ViewChild(NgxStarsComponent, {static: false})
+starsComponent!: NgxStarsComponent;
+
+
 constructor(    
   private route: ActivatedRoute,
   private firestoreService: FirestoreService,
   private dialog: MatDialog,
-  private fireAuthSvc: FirebaseauthService
+  private fireAuthSvc: FirebaseauthService,
   ){
   this.idJuego = route.snapshot.params['id'];
   this.juego = {
@@ -40,7 +48,7 @@ constructor(
     imagenes:[], 
     tiendas:[], 
     descripcion:'', 
-    reseñas:[], 
+    resenas:[], 
     num_likes:0,
     num_jugados:0,
     puntuacion:0,
@@ -49,6 +57,8 @@ constructor(
   this.uid="";
   this.isLiked = false;
   this.jugado = false;
+  this.puntuacion =0;
+
 
 }
 
@@ -71,7 +81,6 @@ getUsuario(){
   this.firestoreService.getDoc('Usuarios', this.uid).subscribe((res:any)=>{
     
     this.usuario = res;
-    console.log("Primero",this.usuario);
     
     this.loadJuego();
 
@@ -85,6 +94,11 @@ loadJuego(){
       this.juego = res;
       console.log(this.juego);
       this.compruebaIsLiked();
+      this.puntuacion = this.juego.puntuacion;
+      if (this.starsComponent) {
+        this.starsComponent.setRating(this.puntuacion);
+      }      
+
 
     }else{
       console.log("Error documento no encontrado");
@@ -130,6 +144,21 @@ openDialogAddLista(): void {
     console.log('Resultado:', result);
   });
 }
+
+openDialogResena(): void {
+  const dialogRef = this.dialog.open(ResenaDialogComponent, {
+    width: '450px',
+    height: '300px',
+    data: { juego: this.juego,
+            usuario: this.usuario } // Puedes pasar datos al diálogo mediante la opción `data`
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('El diálogo se cerró');
+    console.log('Resultado:', result);
+  });
+}
+
 
 marcarJugado(){
 

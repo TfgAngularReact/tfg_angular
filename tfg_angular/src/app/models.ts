@@ -23,7 +23,7 @@ export interface lista{
   num_likes: number;
 }
 
-export interface reseña{
+export interface resena{
   id: string;
   name: string;
   id_juego: string;
@@ -140,7 +140,7 @@ portada:string;
 imagenes:Array<string>; 
 tiendas:Array<string>; 
 descripcion: string;
-reseñas: Array<string>;
+resenas: Array<string>;
 num_likes: number;
 num_jugados: number;
 puntuacion: number;
