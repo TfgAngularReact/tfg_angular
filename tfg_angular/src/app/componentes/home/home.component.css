@@ -1,3 +1,5 @@
+
+.content-wrap{width: 1000px;margin:0 auto;}
 .tarjeta{background-color:darkblue;}
 .tarjeta .cuerpo{ 
     white-space: nowrap;
@@ -12,3 +14,22 @@
     cursor: pointer; /* Cambiar el cursor a una mano para indicar que es clickable */
     border: 1px solid blue; /* Ejemplo: un borde azul al pasar el ratón por encima */
   }
+
+
+.imagen-resena img{
+    max-width: 115px;
+    max-height: 100px;
+}
+
+
+
+.foto-perfil img{
+    max-width: 35px;
+    max-height: 35px;
+    border-radius: 50%;
+}
+
+h3:hover{
+    cursor: pointer;
+    color: aqua;
+}

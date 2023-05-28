@@ -12,6 +12,8 @@ export interface Usuario{
     jugados:Array<string>;
     seguidos: Array<string>;
     seguidores: Array<string>;
+    img_perfil: string;
+    resenas_like: Array<string>;
 
 }
 export interface lista{

@@ -36,6 +36,7 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { ResenaDialogComponent } from './componentes/resena-dialog/resena-dialog.component';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 import { NgxStarsModule } from 'ngx-stars';
@@ -80,7 +81,8 @@ import { NgxStarsModule } from 'ngx-stars';
     MatIconModule,
     MatCheckboxModule,
     MatFormFieldModule,
-    NgxStarsModule
+    NgxStarsModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

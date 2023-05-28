@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import { Observable, of, switchMap } from 'rxjs';
 import { juego, lista, resena } from '../models';
-import { Firestore, collection, addDoc, collectionData, where, query, getDocs, limit } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, collectionData, where, query, getDocs, limit, orderBy } from '@angular/fire/firestore';
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
 import * as moment from 'moment';
 
@@ -98,6 +98,25 @@ export class FirestoreService {
 
   }
 
+  getResenasPopularesNuevas(): Observable<resena[]>{
+    const collectionRef = collection(this.firestore, 'Resenas');
+    const limitDate = moment().subtract(30, 'days').format("DD-MM-YYYY");
+    const queryRef = query(collectionRef, where('fechaCreacion', '>', moment(limitDate, "DD-MM-YYYY").toDate()),orderBy('fechaCreacion'), orderBy('num_likes', 'desc'), limit(6));
+    
+    return collectionData(queryRef, {idField: 'id'}) as Observable<resena[]>;
+
+  }
+
+  getJuegobyResena(id_juego:string){
+    const queryRef = this.database.collection('Juegos', ref => ref.where('id', '==', id_juego));
+
+    return queryRef.valueChanges();
+  }
+
+  getUsuariobyResena(id_usuario:string){
+    const queryRef = this.database.collection('Usuarios', ref => ref.where('id', '==', id_usuario));
+    return queryRef.valueChanges();
+  }
 
 
 }

@@ -29,7 +29,9 @@ export class RegistroComponent {
     reseñas: [],
     jugados: [],
     seguidos: [],
-    seguidores: []
+    seguidores: [],
+    img_perfil:"",
+    resenas_like: []
   };
   password: string;
   repetirPass: string;
