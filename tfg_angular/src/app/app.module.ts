@@ -37,9 +37,12 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { ResenaDialogComponent } from './componentes/resena-dialog/resena-dialog.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 import { NgxStarsModule } from 'ngx-stars';
+import { JugadosComponent } from './componentes/misjuegos/jugados/jugados.component';
+import { JuegosLikesComponent } from './componentes/misjuegos/juegos-likes/juegos-likes.component';
 
 
 
@@ -58,6 +61,8 @@ import { NgxStarsModule } from 'ngx-stars';
     JuegoComponent,
     AddListaDialogComponent,
     ResenaDialogComponent,
+    JugadosComponent,
+    JuegosLikesComponent,
   
 
   ],
@@ -82,7 +87,8 @@ import { NgxStarsModule } from 'ngx-stars';
     MatCheckboxModule,
     MatFormFieldModule,
     NgxStarsModule,
-    MatGridListModule
+    MatGridListModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

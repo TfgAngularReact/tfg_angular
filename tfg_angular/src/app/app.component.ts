@@ -14,6 +14,7 @@ export class AppComponent {
 
   margen: boolean=false;
   auth = false;
+  id:any;
 
   nombreUsuario: string;
 
@@ -26,9 +27,14 @@ export class AppComponent {
 
   }
   async ngOnInit() {
-    const id = await this.firebaseauthService.getUid();
-
-    //this.loadUsuario(id);
+    this.firebaseauthService.stateAuth().subscribe(res => {
+      if (res!==null){
+       this.id=res.uid;
+       console.log("AAAAA",this.id);
+   
+      }
+     });
+   // this.loadUsuario(this.id);
 
 
   }

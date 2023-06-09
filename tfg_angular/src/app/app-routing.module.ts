@@ -12,9 +12,9 @@ import { AuthGuard } from './guards/auth.guards';
 import { ProfileGuard } from './guards/profile.guards';
 
 const routes: Routes = [  {path:'', component:HomeComponent},
-{path:'perfil', component:PerfilComponent, canActivate: [ProfileGuard]},  
-{path:'misjuegos', component:MisjuegosComponent, canActivate: [ProfileGuard]},
-{path:'resenas', component:ResenasComponent, canActivate: [ProfileGuard]},
+{path:'perfil/:id', component:PerfilComponent, canActivate: [ProfileGuard]},  
+{path:'misjuegos/:id', component:MisjuegosComponent, canActivate: [ProfileGuard]},
+{path:'resenas/:id', component:ResenasComponent, canActivate: [ProfileGuard]},
 {path:'login', component: LoginComponent, canActivate: [AuthGuard]},
 {path:'registro', component:RegistroComponent, canActivate: [AuthGuard]},
 {path:'recuperar-contrasena', component:RecuperarContraComponent, canActivate: [AuthGuard]},

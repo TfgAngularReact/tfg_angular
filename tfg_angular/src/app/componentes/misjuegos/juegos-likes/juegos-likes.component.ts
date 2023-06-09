@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { juego } from 'src/app/models';
 import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
@@ -17,24 +18,18 @@ export class JuegosLikesComponent {
  constructor(
   private fireAuthSvc: FirebaseauthService,
   private firestoreService: FirestoreService,
+  private route: ActivatedRoute,
 
  ){
   this.likes=[];
+  this.uid=route.snapshot.params['id'];
  }
  ngOnInit(): void {
   this.loadUsuario();
  }
 
- loadUsuario(){
-  this.fireAuthSvc.stateAuth().subscribe((res: any) => {
-    if (res!==null){
-     this.uid=res.uid;
-     this.getUsuario();
-   }else {
-    }
-   });
-}
-getUsuario(){
+
+loadUsuario(){
   this.firestoreService.getDoc('Usuarios', this.uid).subscribe((res:any)=>{
     this.usuario = res;
     console.log(this.usuario);

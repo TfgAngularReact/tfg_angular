@@ -1,1 +1,30 @@
-<p>resenas works!</p>
+<h6 *ngIf="isYourUser" style="margin-left: 2%; margin-top:5%">
+    TUS RESEÑAS
+</h6>
+<h6 *ngIf="!isYourUser" style="margin-left: 2%; margin-top:5%">
+  RESEÑAS DE {{usuario.nickname}}
+</h6>
+<hr class="my-3" style="margin-left:20px; margin-right: 20px; margin-bottom: -20px;">
+<mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile *ngFor="let item of resenas">
+        <mat-card class="example-card" >
+        <mat-card-header fxLayout="row">
+          <div class="imagen-resena">
+            <img src="{{item.juego.portada}}" alt="" class="imagen-resena">
+          </div>
+            <div fxLayout="column">
+                 <h3  [routerLink]="['/juego/',item.juego.id]">
+                    {{item.juego.nombre}}
+                </h3>
+                <ngx-stars [readonly]="true" [initialStars]="item.resena.puntuacion"></ngx-stars>
+            </div>
+               
+        </mat-card-header>
+        <mat-card-content>
+           <p>{{item.resena.texto}}</p>
+        </mat-card-content>
+        <mat-card-footer fxLayout="row" style="padding-left: 12px;">
+            <mat-icon style="color: red;">favorite</mat-icon> <p>{{item.resena.num_likes}} likes</p>
+
+        </mat-card-footer>
+      </mat-card>

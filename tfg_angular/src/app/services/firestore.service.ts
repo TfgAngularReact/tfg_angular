@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable, of, switchMap } from 'rxjs';
+import { forkJoin, Observable, of, switchMap } from 'rxjs';
 import { juego, lista, resena } from '../models';
-import { Firestore, collection, addDoc, collectionData, where, query, getDocs, limit, orderBy } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, collectionData, where, query, getDocs, limit, orderBy, WhereFilterOp } from '@angular/fire/firestore';
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
 import * as moment from 'moment';
 
@@ -49,12 +49,6 @@ export class FirestoreService {
 
   }
 
-  getProductosUsuario<tipo>(path:string, uid:string){
-    console.log(uid);
-    const collection = this.database.collection<tipo>(path, ref => ref.where('uid','==',uid));
-    return collection.valueChanges();
-  }
-
   getUsuario<tipo>(path:string, uid:string){
     console.log(path);
     const collection = this.database.collection<tipo>(path);
@@ -75,7 +69,7 @@ export class FirestoreService {
 
   getNovedadesJuegos(): Observable<juego[]>{
     const collectionRef = collection(this.firestore, 'Juegos');
-    const limitDate = moment().subtract(30, 'days').format("DD-MM-YYYY");
+    const limitDate = moment().subtract(70, 'days').format("DD-MM-YYYY");
     console.log(limitDate);
     const queryRef = query(collectionRef, where('fechaCreacion', '>', moment(limitDate, "DD-MM-YYYY").toDate()), limit(6));
     console.log(queryRef);
@@ -117,6 +111,32 @@ export class FirestoreService {
     const queryRef = this.database.collection('Usuarios', ref => ref.where('id', '==', id_usuario));
     return queryRef.valueChanges();
   }
+
+  getColleccion(colleccion: string, tipo_busqueda:WhereFilterOp, campo:string, dato:any){
+    const queryRef = this.database.collection(colleccion, ref => ref.where(campo, tipo_busqueda, dato));
+
+    return queryRef.valueChanges();
+
+  }
+
+  getJugadosPerfil( juegos:any){
+    const collectionRef = collection(this.firestore, 'Juegos');
+
+    const queryRef = query(collectionRef,where('id', 'in', juegos), limit(6));
+
+    return collectionData(queryRef,{idField:'id'}) as Observable<juego[]>;
+
+  }
+
+  getResenasPerfil(uid:any){
+    const collectionRef1 = collection(this.firestore, 'Resenas');
+
+    const queryRef1 = query(collectionRef1,where('usuario', '==', uid), orderBy('fechaCreacion', 'desc'));
+
+    return collectionData(queryRef1,{idField:'id'}) as Observable<resena[]>;
+
+  }
+ 
 
 
 }

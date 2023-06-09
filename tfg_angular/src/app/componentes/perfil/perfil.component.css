@@ -1,156 +1,57 @@
-/* Estilos para el container principal */
-.container {
-    margin: 0 auto;
-    padding: 20px;
+
+.content-wrap { 
+    margin-left: 5%;
+    margin-top: 4%;
+    margin-bottom: 10%;
 }
 
-/* Estilos para el perfil del usuario */
-.perfil {
-    display: flex;
-    margin-top: 50px;
-}
-
-.foto-perfil {
-    width: 200px;
-    height: 200px;
+.img-perfil img{
+    max-width: 145px;
+    max-height: 115px;
     border-radius: 50%;
-    overflow: hidden;
-    margin-right: 30px;
+
 }
 
-.foto-perfil img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.imagen-juegos{
+    max-width: 120px; 
+    max-height:92px;
+    border-radius: 5%;
 }
 
-.informacion-perfil {
-    flex-grow: 1;
+.clase1{
+    z-index: 5;
+    
 }
 
-.informacion-perfil h1 {
-    font-size: 24px;
-    margin: 0 0 10px;
+.clase2{
+    z-index: 4;
+    margin-left:-60px;
 }
 
-.info {align-items: right;}
-
-.nombre-usuario, .info{display: inline-block;}
-
-.informacion-perfil p {
-    font-size: 16px;
-    margin: 0 0 20px;
+.clase3{
+    z-index: 3;
+    margin-left:-60px;
+}
+.clase4{
+    z-index: 2;
+    margin-left:-60px;
+}
+.clase5{
+    z-index: 1;
+    margin-left:-60px;
 }
 
-.informacion-perfil ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex; /* Añade display: flex */
-    justify-content: flex-end; /* Añade justify-content: flex-end para alinear a la derecha */
+.footer-tarjeta{
+    padding: 5px;
+    margin-left: 10px;
 }
 
-.informacion-perfil ul li {
-    font-size: 14px;
-    top: 10%;
-    margin-bottom: 10px;
-    margin-left: 10px; /* Añade un margen izquierdo para separar los elementos */
+.imagen-resena img{
+    max-width: 115px;
+    max-height: 100px;
 }
 
-
-/* Estilos para la actividad reciente */
-.actividad-reciente {
-margin-top: 30px;
+h3:hover{
+    cursor: pointer;
+    color: aqua;
 }
-
-.actividad-reciente h2 {
-font-size: 20px;
-margin-bottom: 15px;
-}
-
-.actividad-reciente ul {
-list-style: none;
-padding: 0;
-margin: 0;
-}
-
-.actividad-reciente ul li {
-display: flex;
-margin-bottom: 15px;
-}
-
-.actividad-reciente ul li img {
-width: 60px;
-height: 60px;
-margin-right: 15px;
-object-fit: cover;
-border-radius: 5px;
-}
-
-.actividad-reciente ul li p {
-font-size: 16px;
-margin: 0;
-}
-
-/* Estilos para las listas del usuario */
-.listas-usuario {
-margin-top: 30px;
-}
-
-.listas-usuario h2 {
-font-size: 20px;
-margin-bottom: 15px;
-}
-
-.listas-usuario ul {
-list-style: none;
-padding: 0;
-margin: 0;
-}
-
-.listas-usuario ul li {
-display: flex;
-margin-bottom: 15px;
-}
-
-.listas-usuario ul li img {
-width: 100px;
-height: 100px;
-margin-right: 15px;
-object-fit: cover;
-border-radius: 5px;
-}
-
-.listas-usuario ul li h3 {
-font-size: 18px;
-margin: 0;
-}
-
-.listas-usuario ul li p {
-font-size: 14px;
-margin: 0;
-}
-
-
-.card {
-    border-radius: 12px; /* Establece el radio de los bordes para crear la apariencia redondeada */
-    overflow: hidden; /* Evita que el contenido se desborde de los bordes redondeados */
-  }
-
-  /* Añade estilos de tu elección para personalizar la apariencia de la tarjeta */
-  .card-header {
-    background-color: #007bff;
-    color: #fff;
-  }
-
-  .card-body {
-    padding: 20px;
-  }
-
-  .card-title {
-    font-size: 24px;
-  }
-
-  .card-text {
-    font-size: 16px;
-  }

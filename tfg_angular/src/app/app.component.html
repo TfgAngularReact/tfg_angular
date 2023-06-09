@@ -8,9 +8,9 @@
        <!----> 
       
       <li class="active" [routerLink]="['/']"></li>
-      <li class="active" [routerLink]="['/misjuegos']" *ngIf="auth">Mis juegos</li>
-      <li class="active" [routerLink]="['/resenas']" *ngIf="auth">Reseñas</li>
-      <li class="active" [routerLink]="['/perfil']" *ngIf="auth">Mi perfil</li>
+      <li class="active" [routerLink]="['/misjuegos/', id]" *ngIf="auth">Mis juegos</li>
+      <li class="active" [routerLink]="['/resenas/', id]" *ngIf="auth">Reseñas</li>
+      <li class="active" [routerLink]="['/perfil/', id]" *ngIf="auth">Mi perfil</li>
       <li class="active" [routerLink]="['/registro']" *ngIf="!auth">Registrate</li>
       <li class="active" [routerLink]="['/login']" *ngIf="!auth">Iniciar Sesion</li>
 

@@ -30,7 +30,7 @@
                         <div class="foto-perfil">
                             <img  src="{{item.usuario.img_perfil}}" alt="">
                         </div>
-                        <p >
+                        <p class="usuario" [routerLink]="['/perfil/', item.usuario.uid]">
                             <strong>
                                 {{item.usuario.nickname}}
                             </strong>
@@ -46,7 +46,7 @@
                    <p>{{item.resena.texto}}</p>
                 </mat-card-content>
                 <mat-card-footer fxLayout="row">
-                    <button mat-icon-button (click)="like(item.resena)">
+                    <button *ngIf="stateAuth" mat-icon-button (click)="like(item.resena)">
                         <mat-icon *ngIf="!isliked(item.resena.id)">favorite_border</mat-icon>
                         <mat-icon style="color: red;" *ngIf="isliked(item.resena.id)">favorite</mat-icon>
                     </button>

@@ -1,0 +1,9 @@
+.imagen-resena img{
+    max-width: 115px;
+    max-height: 100px;
+}
+
+h3:hover{
+    cursor: pointer;
+    color: aqua;
+}

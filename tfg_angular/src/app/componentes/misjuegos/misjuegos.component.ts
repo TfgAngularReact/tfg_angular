@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { juego } from 'src/app/models';
 import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
@@ -14,6 +15,8 @@ export class MisjuegosComponent {
   uid: any;
   usuario: any;
   likes:juego[];
+  @Output() datosEnviados = new EventEmitter<any>();
+
 
   constructor(
     public firebaseauthService: FirebaseauthService, 
@@ -22,9 +25,7 @@ export class MisjuegosComponent {
   ){
     this.jugados=[];
     this.likes=[];
-    
   }
-
 
 
 

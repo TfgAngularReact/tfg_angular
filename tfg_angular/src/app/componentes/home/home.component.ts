@@ -22,6 +22,7 @@ export class HomeComponent {
   datosResenas: any;
   uid: any;
   usuario: any;
+  stateAuth: boolean;
 
   constructor(
     public firebaseauthService: FirebaseauthService, 
@@ -34,14 +35,23 @@ export class HomeComponent {
     this.juegos = [];
     this.resenas = [];
     this.datosResenas = [];
-    
+    this.stateAuth = false;
   }
 
   ngOnInit(): void {
+    this.isAuth();
     this.loadUsuario();
     this.loadJuegos();
     this.loadResenas();
     
+  }
+
+  isAuth(){
+    this.fireAuthSvc.stateAuth().subscribe((data:any)=>{
+      if(data!== null){
+        this.stateAuth=true;
+      }
+    });
   }
 
   loadJuegos(){

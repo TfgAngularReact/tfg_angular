@@ -1,3 +1,95 @@
+<div class="content-wrap">
+    <div fxLayout="column" >
+        <div fxLayout="row">
+            <div *ngIf="usuario" style="width: 70%;" fxLayout="row" class="info-usuario">
+                <div class="img-perfil">
+                    <img  src="{{usuario.img_perfil}}" alt="" class="img-perfil">
+                </div>
+                <div fxLayout="column">
+                    {{usuario.nickname}}
+                    <button *ngIf="isYourUser">
+                        <label>EDITAR PERFIL</label> 
+                    </button>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="end center" class="estadisticas">
+                <div fxLayout="column" [routerLink]="['/misjuegos/',uid]" fxLayoutAlign="center center" style="margin-right:30px">
+                    <p>{{num_jugados}}</p>
+                    <p>JUGADOS</p>
+                </div>
+                <div fxLayout="column" [routerLink]="['/mislistas/',uid]" fxLayoutAlign="center center" style="margin-right:30px">
+                    <p>{{num_listas}}</p>
+                    <p>LISTAS</p>
+                </div>
+                <div fxLayout="column" [routerLink]="['/misresenas/',uid]" fxLayoutAlign="center center">
+                    <p>{{num_resenas}}</p>
+                    <p>RESENAS</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h6 style="margin-left: 2%; margin-top:5%">
+                LISTAS
+            </h6>
+            <hr class="my-3" style="margin-left:20px; margin-right: 20px; margin-bottom: -60px;">
+            <div *ngIf="listaJuegos">
+                <mat-grid-list cols="2" rowHeight="2:1" *ngIf="listaJuegos">
+                    <mat-grid-tile *ngFor="let entry of getLimitedMap(listaJuegos, 5) | keyvalue">
+                        <mat-card class="example-card" >
+                            <mat-card-content fxLayout="row">
+                                <div style="max-width: 120px; max-height:92px; box-shadow: 2px 2px 4px 0 rgba(20, 20, 20, 0.3);" *ngFor="let item of entry.value; let i = index" [ngClass]="'clase' + ((i % 5) + 1)">
+                                    <img style="border: 1px solid #000;" class="imagen-juegos" src="{{item.portada}}" alt="">
+                                </div>
+                            </mat-card-content>
+                            <mat-card-footer class="footer-tarjeta" fxLayout="row">
+                               {{entry.key.name}}
+            
+                            </mat-card-footer>
+                          </mat-card>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </div>
+        </div>
+
+        <div>
+            <h6 style="margin-left: 2%; margin-top:5%">
+                RESEÑAS
+            </h6>
+            <hr class="my-3" style="margin-left:20px; margin-right: 20px; margin-bottom: -20px;">
+            <mat-grid-list cols="2" rowHeight="2:1"  *ngIf="datosResenas">
+                <mat-grid-tile *ngFor="let entry of getLimitedMap(datosResenas, 5) | keyvalue">
+                    <mat-card class="example-card" >
+                    <mat-card-header fxLayout="row">
+                      <div class="imagen-resena">
+                        <img src="{{entry.value[0].portada}}" alt="" class="imagen-resena">
+                      </div>
+                      <div fxLayout="column">
+                            <h3  [routerLink]="['/juego/',entry.value[0].id]">
+                                {{entry.value[0].nombre}}
+                            </h3>
+                            <ngx-stars [readonly]="true" [initialStars]="entry.key.puntuacion"></ngx-stars>
+                      </div>
+                    </mat-card-header>
+                    <mat-card-content>
+                       <p>{{entry.key.texto}}</p>
+                    </mat-card-content>
+                    <mat-card-footer fxLayout="row">
+                        <button *ngIf="stateAuth" mat-icon-button (click)="like(entry.key)">
+                            <mat-icon *ngIf="!isliked(entry.key.id)">favorite_border</mat-icon>
+                            <mat-icon style="color: red;" *ngIf="isliked(entry.key.id)">favorite</mat-icon>
+                        </button>
+                        <p>{{entry.key.num_likes}} likes</p>
+    
+                    </mat-card-footer>
+                  </mat-card>
+    
+                </mat-grid-tile>
+                  
+            </mat-grid-list>
+        </div>
+
+    </div>
+</div>
 
 
 
