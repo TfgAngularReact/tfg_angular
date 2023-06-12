@@ -13,15 +13,15 @@
                 </div>
             </div>
             <div fxLayout="row" fxLayoutAlign="end center" class="estadisticas">
-                <div fxLayout="column" [routerLink]="['/misjuegos/',uid]" fxLayoutAlign="center center" style="margin-right:30px">
+                <div fxLayout="column" [routerLink]="['/juegos/',uid]" class="num-estadisticas" fxLayoutAlign="center center" style="margin-right:30px">
                     <p>{{num_jugados}}</p>
                     <p>JUGADOS</p>
                 </div>
-                <div fxLayout="column" [routerLink]="['/mislistas/',uid]" fxLayoutAlign="center center" style="margin-right:30px">
+                <div fxLayout="column" [routerLink]="['/listas/',uid]" class="num-estadisticas" fxLayoutAlign="center center" style="margin-right:30px">
                     <p>{{num_listas}}</p>
                     <p>LISTAS</p>
                 </div>
-                <div fxLayout="column" [routerLink]="['/resenas/',uid]" fxLayoutAlign="center center">
+                <div fxLayout="column" [routerLink]="['/resenas/',uid]" class="num-estadisticas" fxLayoutAlign="center center">
                     <p>{{num_resenas}}</p>
                     <p>RESENAS</p>
                 </div>

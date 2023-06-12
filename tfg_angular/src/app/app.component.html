@@ -8,7 +8,7 @@
        <!----> 
       
       <li class="active" [routerLink]="['/']"></li>
-      <li class="active" [routerLink]="['/misjuegos/', id]" *ngIf="auth">Mis juegos</li>
+      <li class="active" [routerLink]="['/juegos/', id]" *ngIf="auth">Mis juegos</li>
       <li class="active" [routerLink]="['/resenas/', id]" *ngIf="auth">Reseñas</li>
       <li class="active" [routerLink]="['/perfil/', id]" *ngIf="auth">Mi perfil</li>
       <li class="active" [routerLink]="['/registro']" *ngIf="!auth">Registrate</li>

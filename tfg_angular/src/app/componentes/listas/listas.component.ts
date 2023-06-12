@@ -1,18 +1,17 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { juego } from 'src/app/models';
 import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
-  selector: 'app-misjuegos',
-  templateUrl: './misjuegos.component.html',
-  styleUrls: ['./misjuegos.component.css']
+  selector: 'app-listas',
+  templateUrl: './listas.component.html',
+  styleUrls: ['./listas.component.css']
 })
-export class MisjuegosComponent {
-
+export class ListasComponent {
   usuario:any;
   uid:any;
+  listaJuegos: any;
   isYourUser: boolean;
 
 
@@ -48,9 +47,4 @@ getUsuario(){
     console.log(this.usuario);
   });
 }
-
-
-
-
-
 }

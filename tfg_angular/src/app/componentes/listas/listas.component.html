@@ -1,16 +1,17 @@
 <h6 *ngIf="isYourUser" style="margin-left: 2%; margin-top:5%">
-    TUS JUEGOS
+    TUS LISTAS
 </h6>
 <h6 *ngIf="!isYourUser" style="margin-left: 2%; margin-top:5%">
-  JUEGOS DE {{usuario.nickname}}
+  LISTAS DE {{usuario.nickname}}
 </h6>
 <hr class="my-3" style="margin-left:20px; margin-right: 20px; margin-bottom: -20px;">
 
+
 <mat-tab-group >
-    <mat-tab label="Jugados"> 
-        <jugados></jugados>
+    <mat-tab label="Listas"> 
+        <listas-perfil></listas-perfil>
     </mat-tab>
     <mat-tab label="Likes">
-        <juegos-likes></juegos-likes>
+        <listas-likes></listas-likes>
     </mat-tab>
   </mat-tab-group>

@@ -5,7 +5,8 @@ export interface Usuario{
     email: string;
     nickname: string;
     uid: string;
-    likes: Array<string>;
+    likes: Array<string>; //Array con los juegos que ha dado mg el usuario
+    listas_like: Array<string>; 
     fechaRegistro:Timestamp;
     listas: Array<string>; //Array con los id de las listas
     reseñas:Array<string>;

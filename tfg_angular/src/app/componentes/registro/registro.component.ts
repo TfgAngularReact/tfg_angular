@@ -24,6 +24,7 @@ export class RegistroComponent {
     nickname: "",
     uid: "",
     likes: [],
+    listas_like: [],
     fechaRegistro: Timestamp.now(),
     listas: [],
     reseñas: [],

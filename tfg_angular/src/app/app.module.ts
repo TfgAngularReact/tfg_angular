@@ -43,6 +43,9 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { NgxStarsModule } from 'ngx-stars';
 import { JugadosComponent } from './componentes/misjuegos/jugados/jugados.component';
 import { JuegosLikesComponent } from './componentes/misjuegos/juegos-likes/juegos-likes.component';
+import { ListasComponent } from './componentes/listas/listas.component';
+import { ListasPerfilComponent } from './componentes/listas/listas-perfil/listas-perfil.component';
+import { ListasLikesComponent } from './componentes/listas/listas-likes/listas-likes.component';
 
 
 
@@ -63,6 +66,9 @@ import { JuegosLikesComponent } from './componentes/misjuegos/juegos-likes/juego
     ResenaDialogComponent,
     JugadosComponent,
     JuegosLikesComponent,
+    ListasComponent,
+    ListasPerfilComponent,
+    ListasLikesComponent,
   
 
   ],

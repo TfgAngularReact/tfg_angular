@@ -1,0 +1,17 @@
+<div *ngIf="listaJuegos">
+    <mat-grid-list cols="2" rowHeight="2:1" *ngIf="listaJuegos">
+        <mat-grid-tile *ngFor="let entry of listaJuegos">
+            <mat-card class="example-card" >
+                <mat-card-content fxLayout="row">
+                    <div style="max-width: 120px; max-height:92px; box-shadow: 2px 2px 4px 0 rgba(20, 20, 20, 0.3);" *ngFor="let item of entry.value; let i = index" [ngClass]="'clase' + ((i % 5) + 1)">
+                        <img style="border: 1px solid #000;" class="imagen-juegos" src="{{item.portada}}" alt="">
+                    </div>
+                </mat-card-content>
+                <mat-card-footer class="footer-tarjeta" fxLayout="row">
+                   {{entry.key.name}}
+
+                </mat-card-footer>
+              </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
