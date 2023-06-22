@@ -12,11 +12,17 @@
 
 }
 
+.lista:hover{
+    cursor: pointer;
+    
+}
+
 .imagen-juegos{
     max-width: 120px; 
     max-height:92px;
     border-radius: 5%;
 }
+
 
 .clase1{
     z-index: 5;

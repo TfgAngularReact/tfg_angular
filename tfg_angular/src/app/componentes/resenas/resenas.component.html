@@ -1,7 +1,7 @@
 <h6 *ngIf="isYourUser" style="margin-left: 2%; margin-top:5%">
     TUS RESEÑAS
 </h6>
-<h6 *ngIf="!isYourUser" style="margin-left: 2%; margin-top:5%">
+<h6 *ngIf="!isYourUser && usuario" style="margin-left: 2%; margin-top:5%">
   RESEÑAS DE {{usuario.nickname}}
 </h6>
 <hr class="my-3" style="margin-left:20px; margin-right: 20px; margin-bottom: -20px;">

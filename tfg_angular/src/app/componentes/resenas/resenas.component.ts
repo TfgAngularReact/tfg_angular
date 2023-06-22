@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 import { resena } from 'src/app/models';
 import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
@@ -10,6 +11,7 @@ import { FirestoreService } from 'src/app/services/firestore.service';
   styleUrls: ['./resenas.component.css']
 })
 export class ResenasComponent {
+  private _unsubscribeAll: Subject<any>;
   resenas: any[];
   usuario:any;
   uid: any;
@@ -21,7 +23,8 @@ export class ResenasComponent {
 
   
    ){
-    
+    this._unsubscribeAll = new Subject();
+
     this.resenas=[];
     this.uid=route.snapshot.params['id'];
     this.isYourUser=false;
@@ -51,11 +54,14 @@ export class ResenasComponent {
     });
   }
 
-  loadResenas(){
+ /* loadResenas(){
     this.firestoreService.getColleccion('Resenas', '==', 'usuario', this.usuario.uid).subscribe((data:any)=> {
       let datos = data;
       console.log(datos);
+      let juegos = [];
       for(let i = 0; i<datos.length; i++){
+        juegos.push(datos[i].id_juego);
+        
         this.firestoreService.getJuegobyResena(datos[i].id_juego).subscribe((data:any)=>{
           this.resenas.push({resena:datos[i], juego:data[0]});
         });
@@ -63,6 +69,22 @@ export class ResenasComponent {
       
     });
 
+  }
+*/
+  loadResenas(){
+    this.firestoreService.getColleccion('Resenas', '==', 'usuario', this.usuario.uid).pipe(takeUntil(this._unsubscribeAll)).subscribe((data:any)=> {
+      let datos = data;
+      console.log(datos);
+      let juegos = [];
+      data.forEach((doc:any)=>{
+        this.firestoreService.getDoc('Juegos', doc.id_juego).pipe(takeUntil(this._unsubscribeAll)).subscribe((res:any)=>{
+          this.resenas.push({resena: doc,juego: res});
+          console.log(this.resenas);
+        });
+      })
+        
+      });
+      
   }
   
   

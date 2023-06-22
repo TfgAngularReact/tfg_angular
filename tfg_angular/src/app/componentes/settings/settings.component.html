@@ -1,0 +1,30 @@
+<div class="content-wrap">
+    <div fxLayout="column" fxLayoutAlign="center center" class="content">
+        <div fxLayout="row">
+            <div  class="img-perfil">
+                <button matTooltip="Cambiar avatar" class="image-button" (click)="openDialogAddImg()">
+                    <img *ngIf="usuario" fxLayoutAlign="center center" src="{{usuario.img_perfil}}" alt="" class="imagen">  
+                </button>
+            </div>
+        </div>
+        <form [formGroup]="formUsuario" fxLayout="column" fxLayoutAlign="center center">
+            <mat-form-field>
+                <mat-label>Nickname</mat-label>
+                <input matInput readonly name="nickanme" formControlName="nickname" autocomplete="off" input>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput autocomplete="off"  name="email" formControlName="email" input #email (blur)="validarEmail()" [ngClass]="{ 'campo-invalido': !disableSave }">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Bio</mat-label>
+                <textarea matInput autocomplete="off"  name="bio" formControlName="bio" input></textarea>
+              </mat-form-field>
+        </form>
+        <div>
+            <button mat-button [disabled]="disableSave" (click)="guardar()">
+                Guardar
+            </button>
+        </div>
+    </div>
+</div>

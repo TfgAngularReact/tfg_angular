@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './componentes/home/home.component';
 import { JuegoComponent } from './componentes/juego/juego.component';
+import { ListaComponent } from './componentes/lista/lista.component';
 import { ListasComponent } from './componentes/listas/listas.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { MisjuegosComponent } from './componentes/misjuegos/misjuegos.component';
@@ -9,6 +10,7 @@ import { PerfilComponent } from './componentes/perfil/perfil.component';
 import { RecuperarContraComponent } from './componentes/recuperar-contra/recuperar-contra.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { ResenasComponent } from './componentes/resenas/resenas.component';
+import { SettingsComponent } from './componentes/settings/settings.component';
 import { AuthGuard } from './guards/auth.guards';
 import { ProfileGuard } from './guards/profile.guards';
 
@@ -20,7 +22,9 @@ const routes: Routes = [  {path:'', component:HomeComponent},
 {path:'registro', component:RegistroComponent, canActivate: [AuthGuard]},
 {path:'recuperar-contrasena', component:RecuperarContraComponent, canActivate: [AuthGuard]},
 {path:'juego/:id', component:JuegoComponent},
-{path:'listas/:id', component:ListasComponent}];
+{path:'listas/:id', component:ListasComponent},
+{path:'lista/:id', component: ListaComponent},
+{path:'settings', component: SettingsComponent, canActivate: [ProfileGuard]}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

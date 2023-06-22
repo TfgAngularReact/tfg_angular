@@ -32,7 +32,8 @@ export class RegistroComponent {
     seguidos: [],
     seguidores: [],
     img_perfil:"",
-    resenas_like: []
+    resenas_like: [],
+    bio:""
   };
   password: string;
   repetirPass: string;

@@ -6,7 +6,7 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 import { RawgApiService } from 'src/app/services/rawg-api.service';
 import * as moment from 'moment';
 import { juego, resena, Usuario } from 'src/app/models';
-import { map } from 'rxjs';
+import { map, Subject, takeUntil } from 'rxjs';
 
 
 @Component({
@@ -23,6 +23,8 @@ export class HomeComponent {
   uid: any;
   usuario: any;
   stateAuth: boolean;
+  private _unsubscribeAll: Subject<any>;
+
 
   constructor(
     public firebaseauthService: FirebaseauthService, 
@@ -36,6 +38,8 @@ export class HomeComponent {
     this.resenas = [];
     this.datosResenas = [];
     this.stateAuth = false;
+    this._unsubscribeAll = new Subject();
+
   }
 
   ngOnInit(): void {
@@ -47,7 +51,7 @@ export class HomeComponent {
   }
 
   isAuth(){
-    this.fireAuthSvc.stateAuth().subscribe((data:any)=>{
+    this.fireAuthSvc.stateAuth().pipe(takeUntil(this._unsubscribeAll)).subscribe((data:any)=>{
       if(data!== null){
         this.stateAuth=true;
       }
@@ -55,7 +59,7 @@ export class HomeComponent {
   }
 
   loadJuegos(){
-   this.firestoreService.getNovedadesJuegos().subscribe(data=>{
+   this.firestoreService.getNovedadesJuegos().pipe(takeUntil(this._unsubscribeAll)).subscribe(data=>{
     this.novedades = data;
     console.log(this.novedades);
    });
@@ -63,7 +67,7 @@ export class HomeComponent {
 
    actualizaJuegos(){
       
-    this.firestoreService.getCollectionNew().subscribe(juegos=>{
+    this.firestoreService.getCollectionNew().pipe(takeUntil(this._unsubscribeAll)).subscribe(juegos=>{
       for(let i = 0; i<juegos.length;i++){
         this.firestoreService.updateDoc({fechaCreacion:moment().format('DD-MM-YYYY')},"Juegos",juegos[i].id);
       }
@@ -72,21 +76,25 @@ export class HomeComponent {
   }
 
   loadResenas(){
-    this.firestoreService.getResenasPopularesNuevas().subscribe((data:any)=> {
+    this.firestoreService.getResenasPopularesNuevas().pipe(takeUntil(this._unsubscribeAll)).subscribe((data:any)=> {
       this.resenas = data;
       console.log(this.resenas);
       for(let i = 0; i<this.resenas.length; i++){
-        this.firestoreService.getJuegobyResena(this.resenas[i].id_juego).subscribe((data:any)=>{
+        this.firestoreService.getJuegobyResena(this.resenas[i].id_juego).pipe(takeUntil(this._unsubscribeAll)).subscribe((data:any)=>{
           this.datosResenas.push({resena:this.resenas[i], juego:data[0], usuario:{}});
           this.getDataUsuario(i);
         });
       }
       
+      
     });
 
   }
+
+
+
   loadUsuario(){
-    this.fireAuthSvc.stateAuth().subscribe((res: any) => {
+    this.fireAuthSvc.stateAuth().pipe(takeUntil(this._unsubscribeAll)).subscribe((res: any) => {
       if (res!==null){
        this.uid=res.uid;
        this.getUsuario();
@@ -95,13 +103,13 @@ export class HomeComponent {
      });
   }
   getDataUsuario(indice: number){
-    this.firestoreService.getDoc('Usuarios', this.resenas[indice].usuario).subscribe((data:any)=>{
+    this.firestoreService.getDoc('Usuarios', this.resenas[indice].usuario).pipe(takeUntil(this._unsubscribeAll)).subscribe((data:any)=>{
       this.datosResenas[indice].usuario = data;
     });
   }
 
   getUsuario(){
-    this.firestoreService.getDoc('Usuarios', this.uid).subscribe((res:any)=>{
+    this.firestoreService.getDoc('Usuarios', this.uid).pipe(takeUntil(this._unsubscribeAll)).subscribe((res:any)=>{
       this.usuario = res;
       console.log(this.usuario);
     });

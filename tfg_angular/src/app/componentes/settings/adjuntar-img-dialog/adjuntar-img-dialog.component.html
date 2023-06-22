@@ -1,0 +1,15 @@
+<div mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center" style="position: relative;">
+    <h2 class="m-0 mb-8">Cambiar Avatar</h2>
+    <button mat-icon-button (click)="cerrar()" style="color: #666; position: absolute; top: -20px; right: -20px">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+
+<mat-dialog-content>
+    <div class="dropzone">
+        <input type="file" #fileDropRef id="fileDropRef" (change)="fileBrowseHandler($event)">
+        <h3>Arrastra una imagen aquí</h3>
+        <h3>o</h3>
+        <label for="fileDropRef">Abrir el explorador</label>
+    </div>
+</mat-dialog-content>

@@ -1,0 +1,32 @@
+.content-wrap{width: 1000px;margin:0 auto;}
+
+.content{
+    margin-left: 2%
+}
+
+.usuario-link:hover{
+    cursor: pointer;
+    color: aqua;
+}
+
+.tarjeta{background-color:darkblue;}
+.tarjeta .cuerpo{ 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;}
+.titulo{
+    font-size: small;
+}
+
+.tarjeta:hover {
+    /* Estilos cuando el ratón está sobre la tarjeta */
+    cursor: pointer; /* Cambiar el cursor a una mano para indicar que es clickable */
+    border: 1px solid blue; /* Ejemplo: un borde azul al pasar el ratón por encima */
+  }
+
+  .img-perfil img{
+    max-width: 75px;
+    max-height: 40px;
+    border-radius: 50%;
+
+}

@@ -1,0 +1,22 @@
+<div class="content-wrap">
+    <div fxLayout="column" *ngIf="usuario" class="content">
+        <div fxLayout="row"  >
+            <div class="img-perfil">
+                <img  fxLayoutAlign="center center" src="{{usuario.img_perfil}}" alt="" class="img-perfil">
+            </div>
+            <mat-label style="margin-left:10px;" fxLayoutAlign="center center" >Lista de &nbsp;<span class="usuario-link" [routerLink]="['/perfil/', usuario.uid]">{{usuario.nickname}}</span></mat-label>
+
+
+        </div>
+        <h3 style="margin-top:10px;">{{lista.name}}</h3>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-evenly none" style="margin-top:5%; margin-bottom:5%;">
+        <div *ngFor="let item of juegos"style="width: 150px; height:150px" class="card tarjeta" [routerLink]="['/juego/',item.id]">
+            <img src="{{item.portada}}" alt="" class="card-img-top" style=" max-width:100%; max-height:100%;">
+            <div class="card-body cuerpo">
+                <h6 class="card-title titulo">{{item.nombre}}</h6>
+            </div>
+
+        </div>
+    </div>
+</div>

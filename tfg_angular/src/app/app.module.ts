@@ -38,6 +38,9 @@ import { MatFormFieldModule } from '@angular/material/form-field'
 import { ResenaDialogComponent } from './componentes/resena-dialog/resena-dialog.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatInputModule} from '@angular/material/input';
+
 
 
 import { NgxStarsModule } from 'ngx-stars';
@@ -46,6 +49,10 @@ import { JuegosLikesComponent } from './componentes/misjuegos/juegos-likes/juego
 import { ListasComponent } from './componentes/listas/listas.component';
 import { ListasPerfilComponent } from './componentes/listas/listas-perfil/listas-perfil.component';
 import { ListasLikesComponent } from './componentes/listas/listas-likes/listas-likes.component';
+import { ListaComponent } from './componentes/lista/lista.component';
+import { SettingsComponent } from './componentes/settings/settings.component';
+import { ChangePassDialogComponent } from './componentes/settings/change-pass-dialog/change-pass-dialog.component';
+import { AdjuntarImgDialogComponent } from './componentes/settings/adjuntar-img-dialog/adjuntar-img-dialog.component';
 
 
 
@@ -69,6 +76,10 @@ import { ListasLikesComponent } from './componentes/listas/listas-likes/listas-l
     ListasComponent,
     ListasPerfilComponent,
     ListasLikesComponent,
+    ListaComponent,
+    SettingsComponent,
+    ChangePassDialogComponent,
+    AdjuntarImgDialogComponent,
   
 
   ],
@@ -94,7 +105,9 @@ import { ListasLikesComponent } from './componentes/listas/listas-likes/listas-l
     MatFormFieldModule,
     NgxStarsModule,
     MatGridListModule,
-    MatTabsModule
+    MatTabsModule,
+    MatTooltipModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -15,6 +15,7 @@ export interface Usuario{
     seguidores: Array<string>;
     img_perfil: string;
     resenas_like: Array<string>;
+    bio: string
 
 }
 export interface lista{
