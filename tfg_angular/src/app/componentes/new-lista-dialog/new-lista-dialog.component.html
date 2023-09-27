@@ -1,0 +1,12 @@
+<mat-dialog-content style="background-color: rgb(36, 49, 77)">
+    <div fxLayout="column" fxLayoutAlign="center center">
+        <h6 style="color: white;">Crea una lista</h6>
+        <input type="text" name="nombre" class="form-control mt-4" placeholder="Escribe un nombre" [(ngModel)]="nombreLista">
+        <button style="color: white;" type="button" class="btn mt-4" (click)="crearLista()"> 
+            GUARDAR
+        </button>
+    </div>
+    <mat-dialog-actions align="end">
+        <button mat-button style="color: white;" mat-dialog-close>Cerrar</button>
+    </mat-dialog-actions>
+</mat-dialog-content>

@@ -1,0 +1,34 @@
+<mat-card style=" background-color:#2e3a50;" *ngIf="juego" class="example-card" >
+    <mat-card-header fxLayout="row">
+      <div class="imagen-resena">
+        <img  src="{{juego.portada}}" alt="" class="imagen-resena">
+      </div>
+      <div *ngIf="usuario" fxLayout="column">
+        <div fxLayout="row">
+            <div class="foto-perfil">
+                <img  src="{{usuario.img_perfil}}" alt="">
+            </div>
+            <p class="usuario" [routerLink]="['/perfil/', usuario.uid]">
+                <strong>
+                    {{usuario.nickname}}
+                </strong>
+            </p>
+        </div>
+            <h3  [routerLink]="['/juego/',juego.id]">
+                {{juego.nombre}}
+            </h3>
+            <ngx-stars [readonly]="true" [initialStars]="resena.puntuacion"></ngx-stars>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+       <p>{{resena.texto}}</p>
+    </mat-card-content>
+    <mat-card-footer fxLayout="row">
+        <button *ngIf="stateAuth" mat-icon-button (click)="like(resena)">
+            <mat-icon *ngIf="!isliked(resena.id)">favorite_border</mat-icon>
+            <mat-icon style="color: red;" *ngIf="isliked(resena.id)">favorite</mat-icon>
+        </button>
+        <p>{{resena.num_likes}} likes</p>
+
+    </mat-card-footer>
+  </mat-card>

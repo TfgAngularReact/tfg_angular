@@ -1,8 +1,10 @@
-.tarjeta{background-color:darkblue;}
+.tarjeta{background-color:#2e3a50;}
 .tarjeta .cuerpo{ 
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;}
+    text-overflow: ellipsis;
+    color: white;
+    }
 .titulo{
     font-size: small;
 }

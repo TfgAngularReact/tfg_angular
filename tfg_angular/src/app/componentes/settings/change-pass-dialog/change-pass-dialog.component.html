@@ -1,1 +1,23 @@
-<p>change-pass-dialog works!</p>
+<div class="content-wrap">
+    <div fxLayout="column" fxLayoutAlign="center center" class="content">
+        <form [formGroup]="formContrasena" fxLayout="column" fxLayoutAlign="center center">
+            <mat-form-field>
+                <mat-label>Nickname</mat-label>
+                <input matInput readonly name="nickanme" formControlName="nickname" autocomplete="off" input>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput autocomplete="off"  name="email" formControlName="email" input #email>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Bio</mat-label>
+                <textarea matInput autocomplete="off"  name="bio" formControlName="bio" input></textarea>
+              </mat-form-field>
+        </form>
+        <div>
+            <button mat-button>
+                Guardar
+            </button>
+        </div>
+    </div>
+</div>

@@ -16,6 +16,7 @@ export class ResenasComponent {
   usuario:any;
   uid: any;
   isYourUser: boolean;
+  stateAuth: boolean;
   constructor(
     private fireAuthSvc: FirebaseauthService,
     private firestoreService: FirestoreService,
@@ -24,15 +25,23 @@ export class ResenasComponent {
   
    ){
     this._unsubscribeAll = new Subject();
-
     this.resenas=[];
     this.uid=route.snapshot.params['id'];
     this.isYourUser=false;
+    this.stateAuth = false
 
    }
    ngOnInit(): void {
     this.loadUsuario();
    }
+
+   isAuth(){
+    this.fireAuthSvc.stateAuth().pipe(takeUntil(this._unsubscribeAll)).subscribe((data:any)=>{
+      if(data!== null){
+        this.stateAuth=true;
+      }
+    });
+  }
   
    loadUsuario(){
     this.fireAuthSvc.stateAuth().subscribe((res: any) => {
@@ -54,35 +63,10 @@ export class ResenasComponent {
     });
   }
 
- /* loadResenas(){
-    this.firestoreService.getColleccion('Resenas', '==', 'usuario', this.usuario.uid).subscribe((data:any)=> {
-      let datos = data;
-      console.log(datos);
-      let juegos = [];
-      for(let i = 0; i<datos.length; i++){
-        juegos.push(datos[i].id_juego);
-        
-        this.firestoreService.getJuegobyResena(datos[i].id_juego).subscribe((data:any)=>{
-          this.resenas.push({resena:datos[i], juego:data[0]});
-        });
-      }
-      
-    });
 
-  }
-*/
   loadResenas(){
     this.firestoreService.getColleccion('Resenas', '==', 'usuario', this.usuario.uid).pipe(takeUntil(this._unsubscribeAll)).subscribe((data:any)=> {
-      let datos = data;
-      console.log(datos);
-      let juegos = [];
-      data.forEach((doc:any)=>{
-        this.firestoreService.getDoc('Juegos', doc.id_juego).pipe(takeUntil(this._unsubscribeAll)).subscribe((res:any)=>{
-          this.resenas.push({resena: doc,juego: res});
-          console.log(this.resenas);
-        });
-      })
-        
+      this.resenas = data;
       });
       
   }

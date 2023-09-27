@@ -19,7 +19,7 @@ export class HomeComponent {
   novedades: any;
   resenas: resena[];
   juegos: juego[];
-  datosResenas: any;
+  resenasData: any;
   uid: any;
   usuario: any;
   stateAuth: boolean;
@@ -36,7 +36,7 @@ export class HomeComponent {
   ){
     this.juegos = [];
     this.resenas = [];
-    this.datosResenas = [];
+    this.resenasData = [];
     this.stateAuth = false;
     this._unsubscribeAll = new Subject();
 
@@ -61,32 +61,13 @@ export class HomeComponent {
   loadJuegos(){
    this.firestoreService.getNovedadesJuegos().pipe(takeUntil(this._unsubscribeAll)).subscribe(data=>{
     this.novedades = data;
-    console.log(this.novedades);
    });
-  }
-
-   actualizaJuegos(){
-      
-    this.firestoreService.getCollectionNew().pipe(takeUntil(this._unsubscribeAll)).subscribe(juegos=>{
-      for(let i = 0; i<juegos.length;i++){
-        this.firestoreService.updateDoc({fechaCreacion:moment().format('DD-MM-YYYY')},"Juegos",juegos[i].id);
-      }
-    });
-   
   }
 
   loadResenas(){
     this.firestoreService.getResenasPopularesNuevas().pipe(takeUntil(this._unsubscribeAll)).subscribe((data:any)=> {
       this.resenas = data;
       console.log(this.resenas);
-      for(let i = 0; i<this.resenas.length; i++){
-        this.firestoreService.getJuegobyResena(this.resenas[i].id_juego).pipe(takeUntil(this._unsubscribeAll)).subscribe((data:any)=>{
-          this.datosResenas.push({resena:this.resenas[i], juego:data[0], usuario:{}});
-          this.getDataUsuario(i);
-        });
-      }
-      
-      
     });
 
   }
@@ -104,7 +85,7 @@ export class HomeComponent {
   }
   getDataUsuario(indice: number){
     this.firestoreService.getDoc('Usuarios', this.resenas[indice].usuario).pipe(takeUntil(this._unsubscribeAll)).subscribe((data:any)=>{
-      this.datosResenas[indice].usuario = data;
+      this.resenasData[indice].usuario = data;
     });
   }
 
@@ -113,44 +94,6 @@ export class HomeComponent {
       this.usuario = res;
       console.log(this.usuario);
     });
-  }
-
-  like(resena: resena){
-    if(!this.usuario.resenas_like.includes(resena.id)){
-      resena.num_likes+=1;
-      this.usuario.resenas_like.push(resena.id);
-      try{
-        this.firestoreService.updateDoc(resena,'Resenas',resena.id);
-  
-        this.firestoreService.updateDoc(this.usuario, 'Usuarios', this.uid);
-      }catch(e){
-        console.log('Error', e);
-      }
-  
-    }
-    else{
-      resena.num_likes -= 1;
-  
-      const elementoAEliminar = resena.id;
-      const indice = this.usuario.resenas_like.indexOf(elementoAEliminar);
-      if (indice !== -1) {
-        this.usuario.resenas_like.splice(indice, 1);
-      }
-      try{
-        this.firestoreService.updateDoc(resena,'Resenas',resena.id);
-  
-        this.firestoreService.updateDoc(this.usuario, 'Usuarios', this.uid);
-      }catch(e){
-        console.log('Error', e);
-      }
-    }
-  }
-
-  isliked(id_resena:string){
-
-    return this.usuario.resenas_like.includes(id_resena);
-
-
   }
 
 

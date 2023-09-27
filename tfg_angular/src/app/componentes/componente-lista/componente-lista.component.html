@@ -1,0 +1,17 @@
+<mat-card style="background-color:#2e3a50;" class="lista" [routerLink]="['/lista/', lista.id]"  >
+    <mat-card-content fxLayout="row">
+            <div  style="max-width: 120px; max-height:92px; box-shadow: 2px 2px 4px 0 rgba(20, 20, 20, 0.3);" *ngFor="let item of juegos; let i = index" [ngClass]="'clase' + ((i % 5) + 1)">
+                <img style="border: 1px solid #000;" class="imagen-juegos" src="{{item.portada}}" alt="">
+            </div>
+
+        <span fxLayout="row" *ngIf="lista.juegos.length===0">
+            <div style="border: 1px solid #fff; max-width: 120px; max-height:92px; box-shadow: 2px 2px 4px 0 rgba(20, 20, 20, 0.3);" class="sin-juego" *ngFor="let item of numeros; let i = index" [ngClass]="'clase' + ((i % 5) + 1)">
+
+            </div>
+        </span>
+
+    </mat-card-content>
+    <mat-card-footer style="color: white;" class="footer-tarjeta" fxLayout="row" fxLayoutAlign="center">
+       {{lista.name}}
+    </mat-card-footer>
+  </mat-card>

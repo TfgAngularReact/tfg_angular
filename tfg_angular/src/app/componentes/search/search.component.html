@@ -1,0 +1,10 @@
+
+<div fxLayout="row" fxLayoutAlign="space-evenly none">
+    <div *ngFor="let item of juegos"style="width: 150px; height:150px" class="card tarjeta" [routerLink]="['/juego/',item.id]">
+        <img src="{{item.portada}}" alt="" class="card-img-top" style=" max-width:100%; max-height:100%;">
+        <div class="card-body cuerpo">
+            <h6 class="card-title titulo" style="color: white">{{item.nombre}}</h6>
+        </div>
+
+    </div>
+</div>

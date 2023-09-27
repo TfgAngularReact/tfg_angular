@@ -22,6 +22,9 @@
               </mat-form-field>
         </form>
         <div>
+            <button mat-button (click)="openDialogChangePass()">
+                Cambiar contraseña
+            </button>
             <button mat-button [disabled]="disableSave" (click)="guardar()">
                 Guardar
             </button>

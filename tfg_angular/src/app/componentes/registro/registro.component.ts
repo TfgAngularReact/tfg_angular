@@ -109,7 +109,7 @@ export class RegistroComponent {
       // Si el objeto se guarda correctamente  nos deberia de cerrar el mensaje de guardando 
         console.log('Usuario Guardado con exito en el modulo de BD')
     } ).catch( error=> {
-      console.log("Error sus muerto");
+      console.log("Error al guardar el usuario");
       
     })    ;
     

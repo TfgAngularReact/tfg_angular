@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { game } from 'src/app/models';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { ActivatedRoute } from '@angular/router';
-
-import { forkJoin, from, map, Observable, of, Subscription, switchMap } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { NewListaDialogComponent } from '../new-lista-dialog/new-lista-dialog.component';
 
 @Component({
   selector: 'app-perfil',
@@ -91,7 +91,9 @@ export class PerfilComponent {
     private router :Router,
     private rawg: RawgApiService,
     private firestoreService: FirestoreService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dialog: MatDialog,
+
 ) { 
    this.num_listas=0;
    this.num_jugados=0;
@@ -156,18 +158,8 @@ isAuth(){
 
 loadResenas(){
   this.firestoreService.getResenasPerfil(this.uid).subscribe((data:any)=> {
-    this.resenas = data;
-    this.num_resenas = this.resenas.length;
-
-    let mapita = new Map();
-    this.resenas.forEach((doc: any) =>{
-          this.firestoreService.getJuegobyResena(doc.id_juego)
-          .subscribe((response: any) => {
-            this.datosResenas= mapita.set(doc,response);
-          });
-  
-        });
-    
+    this.num_resenas = data.length;
+    this.resenas = data.slice(0,4);
   });
 
 }
@@ -181,76 +173,26 @@ loadJugados(){
 
  loadListas(){
   this.firestoreService.getColleccion("Listas", "==", "uid", this.usuario.uid).subscribe( (data:any)=>{
-    this.listas = data;
-    this.num_listas = this.listas.length;
-    this.loadJuegosListas();
+
+    this.num_listas = data.length;
+    this.listas = data.slice(0,6);
   });
 }
 
-loadJuegosListas(){
-   let mapita = new Map();
-  this.listas.forEach((doc: any) =>{
-        this.firestoreService.getColleccion('Juegos', 'in', 'id', doc.juegos)
-        .subscribe((response: any) => {
-          this.listaJuegos= mapita.set(doc,response);
-        });
+openDialogNewLista(): void {
+  const dialogRef = this.dialog.open(NewListaDialogComponent, {
+    width: '450px',
+    height: '242.53px',
+    data: {usuario: this.usuario },
+    panelClass: 'dialogo'
+  });
 
-      });
-
-}
-getLimitedMap(map: Map<any, any>, limit: number): Map<any, any> {
-  const limitedMap = new Map();
-  let count = 0;
-  for (let [key, value] of map) {
-    limitedMap.set(key, value);
-    count++;
-
-    if (count === limit) {
-      break;
-    }
-  }
-  return limitedMap;
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('El diálogo se cerró');
+    console.log('Resultado:', result);
+  });
 }
 
-
-isliked(id_resena:string){
-
-  return this.usuario.resenas_like.includes(id_resena);
-
-
-}
-
-like(resena: any){
-  console.log(resena);
-  if(!this.tuUsuario.resenas_like.includes(resena.id)){
-    resena.num_likes+=1;
-    this.tuUsuario.resenas_like.push(resena.id);
-    try{
-      this.firestoreService.updateDoc(resena,'Resenas',resena.id);
-
-      this.firestoreService.updateDoc(this.tuUsuario, 'Usuarios', this.uid);
-    }catch(e){
-      console.log('Error', e);
-    }
-
-  }
-  else{
-    resena.num_likes -= 1;
-
-    const elementoAEliminar = resena.id;
-    const indice = this.tuUsuario.resenas_like.indexOf(elementoAEliminar);
-    if (indice !== -1) {
-      this.tuUsuario.resenas_like.splice(indice, 1);
-    }
-    try{
-      this.firestoreService.updateDoc(resena,'Resenas',resena.id);
-
-      this.firestoreService.updateDoc(this.tuUsuario, 'Usuarios', this.uid);
-    }catch(e){
-      console.log('Error', e);
-    }
-  }
-}
 
 /*public obtenerjuegos(){
     this.rawg.getGames(`2019-09-01,2019-09-30`).subscribe( async (data:any)=>{

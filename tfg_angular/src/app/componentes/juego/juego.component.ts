@@ -73,6 +73,7 @@ loadUsuario(){
      this.uid=res.uid;
      this.getUsuario();
    }else {
+    this.loadJuego();
     }
    });
 }
@@ -125,6 +126,7 @@ compruebaIsJugado(){
 }
 
 getBackgroundImageStyle() {
+  console.log(this.juego);
   const backgroundImage = this.juego?.portada ? `linear-gradient(0deg, rgb(6, 16, 31) 20%, rgba(6, 16, 31, 0.6)), url(${this.juego.portada})` : '';
   return {
     'background-image': backgroundImage

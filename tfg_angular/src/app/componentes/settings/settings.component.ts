@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { AdjuntarImgDialogComponent } from './adjuntar-img-dialog/adjuntar-img-dialog.component';
+import { ChangePassDialogComponent } from './change-pass-dialog/change-pass-dialog.component';
 
 
 @Component({
@@ -60,6 +61,18 @@ export class SettingsComponent {
 
   openDialogAddImg(): void {
     const dialogRef = this.dialog.open(AdjuntarImgDialogComponent, {
+      width: '500px',
+      height: '300px'
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('El diálogo se cerró');
+      console.log('Resultado:', result);
+    });
+  }
+
+  openDialogChangePass(): void {
+    const dialogRef = this.dialog.open(ChangePassDialogComponent, {
       width: '500px',
       height: '300px'
     });
